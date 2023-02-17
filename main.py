@@ -48,10 +48,10 @@ class Main:
             # print(res_name)
             sql_names = res['sql']
             # print(sql_names)
-            res_ser = Function.get_database(header, subs, res_name, sql_names)
-            self.DATABASE_STATUS.extend(res_ser)
+            #res_ser = Function.get_database(header, subs, res_name, sql_names)
+            #self.DATABASE_STATUS.extend(res_ser)
 
-        #print(self.DATABASE_STATUS)
+        print(self.DATABASE_STATUS)
         return ''
 
 
