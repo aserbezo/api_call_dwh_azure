@@ -10,8 +10,8 @@ from main import main_logic, get_database_status
 
 
 def pause_servers():
-    for i in final:
-        resource_name = i["resource_group_nane"]
+    for i in FINAL:
+        resource_name = i["resource_group_name"]
         server_name = i['server_name']
         database_name = i['database_name']
         header = {'Authorization': entry_token.get(), 'Content-Type': 'application/json'}
@@ -19,14 +19,14 @@ def pause_servers():
               f'/providers/Microsoft.Sql/servers/{server_name}/databases' \
               f'/{database_name}/pause?api-version=2020-11-01-preview'
 
-        response = requests.post(headers=header)
+        response = requests.post(url, headers=header)
         print(response)
     return 'it paused'
 
 
 def resume_servers():
-    for i in final:
-        resource_name = i["resource_group_nane"]
+    for i in FINAL:
+        resource_name = i["resource_group_name"]
         server_name = i['server_name']
         database_name = i['database_name']
         header = {'Authorization': entry_token.get(), 'Content-Type': 'application/json'}
@@ -64,6 +64,7 @@ def display_result():
                                      text=f'Resource Name:{resource_name} Server Name: {server_name} Database Name: {database_name} Status: {status}',
                                      font=('Ariel', 10, 'italic'))
         result_label.pack(pady=1)
+    global FINAL
     FINAL = DATABASE_STATUS
     return FINAL
 
@@ -98,7 +99,6 @@ button_check_status.pack(pady=10)
 display_result_frame = tkinter.Frame(window, width=300, height=300)
 display_result_frame.pack()
 button_check_status['command'] = display_result
-final = display_result
 button_clear_display = tkinter.Button(window, text='Clear', width=20)
 button_clear_display['command'] = clear_result
 button_clear_display.pack(pady=10)
