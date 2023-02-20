@@ -79,21 +79,3 @@ class Function:
 
         return status
 
-    @staticmethod
-    def pause_database(header, subs, resource_name, serverName, database_name):
-
-        url = f'https://management.azure.com/subscriptions/{subs}/resourceGroups/{resource_name}' \
-              f'/providers/Microsoft.Sql/servers/{serverName}/databases' \
-              f'/{database_name}/pause?api-version=2020-11-01-preview'
-
-        response = requests.post(url, headers=header)
-        print(response)
-
-    @staticmethod
-    def resume_database(header, subs, resource_name, serverName, database_name):
-        url = f'https://management.azure.com/subscriptions/{subs}/resourceGroups' \
-              f'/{resource_name}/providers/Microsoft.Sql/servers/{serverName}/databases' \
-              f'/{database_name}/resume?api-version=2021-02-01-preview'
-
-        response = requests.post(url, headers=header)
-        print(response)
